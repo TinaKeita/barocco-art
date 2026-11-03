@@ -326,6 +326,48 @@ main {
     transform: none;
 }
 
+/* small menu for email and phone links (made in app.js) */
+.contact-menu {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    animation: menu-in 0.15s var(--ease);
+}
+
+.contact-menu[hidden] {
+    display: none;
+}
+
+.contact-menu button {
+    padding: 6px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.contact-menu button:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+
+@keyframes menu-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+}
+
 /* phone */
 @media (max-width: 720px) {
     .nav {
