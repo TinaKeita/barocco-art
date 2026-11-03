@@ -1,5 +1,4 @@
-
-/* ---------- Services block ---------- */
+/* services box on home page */
 .services-block {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -11,6 +10,7 @@
     line-height: 1.7;
 }
 
+/* 4 small service boxes */
 .services-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -40,7 +40,7 @@
     line-height: 1.6;
 }
 
-/* ---------- Mobile ---------- */
+/* phone */
 @media (max-width: 720px) {
     .services-block {
         grid-template-columns: 1fr;

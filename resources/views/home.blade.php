@@ -8,7 +8,7 @@
 
 @section('content')
 
-    {{-- Intro --}}
+    {{-- intro text --}}
     <section class="hero">
         <h1>Barocco Art</h1>
         <p>
@@ -18,6 +18,7 @@
         </p>
     </section>
 
+    {{-- gallery only shows if there are images --}}
     @if ($images->isNotEmpty())
         <div class="gallery">
             @foreach ($images as $image)
@@ -28,7 +29,7 @@
         </div>
     @endif
 
-    {{-- Services --}}
+    {{-- services, this text is written here not from database --}}
     <section class="card services-block">
         <div class="services-intro">
             <p class="eyebrow">Pakalpojumi</p>
@@ -61,7 +62,7 @@
         </div>
     </section>
 
-    {{-- Contact --}}
+    {{-- contact buttons --}}
     <section class="card contact-block">
         <div>
             <p class="eyebrow">Kontakti</p>

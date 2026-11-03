@@ -1,5 +1,4 @@
-
-/* Whole card is a link */
+/* whole card is a link */
 .service-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -18,7 +17,7 @@
     line-height: 1.7;
 }
 
-/* Card without an image: text only, a bit more padding */
+/* card without an image */
 .service-card--no-image {
     grid-template-columns: 1fr;
     min-height: 0;
@@ -29,7 +28,7 @@
     max-width: 520px;
 }
 
-/* Hover: image zooms, underline redraws */
+/* image zooms on hover */
 .service-card:hover .image-frame img {
     transform: scale(1.04);
 }
@@ -38,14 +37,13 @@
     background-size: 0 1px;
 }
 
-/* ---------- Mobile ---------- */
+/* phone */
 @media (max-width: 720px) {
     .service-card {
         grid-template-columns: 1fr;
         min-height: 0;
     }
 
-    /* image above the text on phones */
     .service-card .image-frame {
         order: -1;
     }

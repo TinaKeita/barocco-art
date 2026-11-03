@@ -1,7 +1,5 @@
-
-
 (function () {
-    // ---- 1. Header gets a blurred background after scrolling ----
+    // header gets background when you scroll down
     const header = document.querySelector('.site-header');
 
     function updateHeader() {
@@ -12,9 +10,7 @@
     updateHeader();
     window.addEventListener('scroll', updateHeader, { passive: true });
 
-    // ---- 2. Scroll reveal ----
-    // Elements that fade/slide in when they enter the screen.
-    // No need to add classes in Blade – they are picked here.
+    // these elements fade in when they show up on screen
     const revealTargets = document.querySelectorAll(
         '.hero, .gallery-item, .card, .service-item, .service-intro, .service-actions'
     );
@@ -23,20 +19,21 @@
         el.classList.add('reveal');
     });
 
-    // Stagger items that sit next to each other (gallery, service grid)
+    // small delay for each item so they come one after another
     document.querySelectorAll('.gallery, .services-grid').forEach(function (group) {
         Array.from(group.children).forEach(function (child, i) {
             child.style.setProperty('--delay', (i % 4) * 90 + 'ms');
         });
     });
 
+    // old browsers dont have IntersectionObserver, then just show everything
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver(
             function (entries) {
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // animate only once
+                        observer.unobserve(entry.target);
                     }
                 });
             },
@@ -47,13 +44,12 @@
             observer.observe(el);
         });
     } else {
-        // Very old browsers: just show everything
         revealTargets.forEach(function (el) {
             el.classList.add('is-visible');
         });
     }
 
-    // ---- 3. Images fade in once they finish loading ----
+    // images fade in after they load
     document.querySelectorAll('.gallery-item img, .image-frame img').forEach(function (img) {
         img.classList.add('lazy-fade');
 

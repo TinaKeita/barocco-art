@@ -1,5 +1,4 @@
-
-/* ---------- Design tokens ---------- */
+/* main colors and sizes used everywhere */
 :root {
     --bg: #000000;
     --surface: #111111;
@@ -20,7 +19,6 @@
     --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* ---------- Reset / base ---------- */
 *,
 *::before,
 *::after {
@@ -75,7 +73,6 @@ p {
     border-radius: 4px;
 }
 
-/* ---------- Page column ---------- */
 .nav,
 main,
 .footer {
@@ -89,7 +86,7 @@ main {
     gap: 40px;
 }
 
-/* ---------- Header / navigation ---------- */
+/* header and menu */
 .site-header {
     position: sticky;
     top: 0;
@@ -154,7 +151,6 @@ main {
     transform-origin: left;
 }
 
-/* ---------- Shared components ---------- */
 .eyebrow {
     font-size: 11px;
     text-transform: uppercase;
@@ -167,6 +163,7 @@ main {
     color: var(--text-muted);
 }
 
+/* white boxes used on all pages */
 .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -188,7 +185,7 @@ main {
     color: var(--text-muted);
 }
 
-/* Buttons */
+/* buttons */
 .btn {
     display: inline-block;
     padding: 6px 14px;
@@ -222,7 +219,6 @@ main {
     color: var(--text);
 }
 
-/* "Lasīt vairāk" style text link */
 .link {
     display: inline-block;
     margin-top: 14px;
@@ -237,7 +233,6 @@ main {
     background-size: 0 1px;
 }
 
-/* ---------- Hero (page intro, used on every page) ---------- */
 .hero {
     text-align: center;
     padding-top: 36px;
@@ -256,7 +251,6 @@ main {
     color: var(--text-muted);
 }
 
-/* ---------- Gallery (home + service pages) ---------- */
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -290,7 +284,6 @@ main {
     opacity: 1;
 }
 
-/* ---------- Contact block (home + contacts) ---------- */
 .contact-block {
     display: flex;
     align-items: center;
@@ -312,14 +305,13 @@ main {
     gap: 8px;
 }
 
-/* ---------- Footer ---------- */
 .footer {
     padding: 32px 0 48px;
     font-size: 9px;
     color: var(--text-faint);
 }
 
-/* ---------- Scroll reveal (classes added by app.js) ---------- */
+/* scroll animation, classes are added in app.js */
 .js .reveal {
     opacity: 0;
     transform: translateY(18px);
@@ -334,7 +326,7 @@ main {
     transform: none;
 }
 
-/* ---------- Mobile ---------- */
+/* phone */
 @media (max-width: 720px) {
     .nav {
         flex-direction: column;
@@ -357,7 +349,7 @@ main {
     }
 }
 
-/* ---------- Respect "reduce motion" setting ---------- */
+/* turns off animations if user wants less motion */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;

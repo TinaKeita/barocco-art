@@ -1,6 +1,4 @@
-
-
-/* Text left, big image right */
+/* text on the left, image on the right */
 .service-intro {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -9,7 +7,7 @@
     padding-top: 24px;
 }
 
-/* No image yet: text only, readable line length */
+/* when section has no image yet */
 .service-intro--no-image {
     grid-template-columns: 1fr;
 }
@@ -36,13 +34,12 @@
     font-weight: 600;
 }
 
-/* Image stays in view while reading long text */
+/* image stays on screen while scrolling */
 .service-intro__image {
     position: sticky;
     top: 90px;
 }
 
-/* Back / contact buttons */
 .service-actions {
     display: flex;
     flex-wrap: wrap;
@@ -54,7 +51,7 @@
     padding: 8px 16px;
 }
 
-/* ---------- Mobile ---------- */
+/* phone - image goes above the text */
 @media (max-width: 720px) {
     .service-intro {
         grid-template-columns: 1fr;
@@ -62,6 +59,6 @@
 
     .service-intro__image {
         position: static;
-        order: -1; /* image above the text on phones */
+        order: -1;
     }
 }

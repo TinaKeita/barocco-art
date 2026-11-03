@@ -6,31 +6,9 @@
     <link rel="stylesheet" href="{{ asset('css/contacts.css') }}">
 @endpush
 
-@php
-    // Temporary data. In Step 3 this comes from the `contacts` table
-    // and is passed in from the route instead.
-    $contacts = [
-        [
-            'initials' => 'AL',
-            'role'     => 'Arhitektūra, projektēšana',
-            'name'     => 'Armands Lūsis',
-            'email'    => 'armands@baroccoart.lv',
-            'phone'    => '+371 2 949 4338',
-            'note'     => 'gsm',
-        ],
-        [
-            'initials' => 'BI',
-            'role'     => 'Birojs',
-            'name'     => 'Brīvības iela 137 Rīga, Latvija',
-            'email'    => 'barocco@baroccoart.lv',
-            'phone'    => '+371 26262626',
-            'note'     => 'WhatsApp',
-        ],
-    ];
-@endphp
-
 @section('content')
 
+    {{-- page intro --}}
     <section class="hero">
         <p class="eyebrow">Projektēšanas birojs Barocco Art</p>
         <h1>Arhitektūra · Interjers · Projektēšana · Būvniecība</h1>
@@ -41,26 +19,33 @@
     </section>
 
     <div class="contacts-grid">
+        {{-- one card for each contact from database --}}
         @foreach ($contacts as $contact)
             <section class="card contact-card">
+                {{-- every second avatar has other color --}}
                 <div class="avatar {{ $loop->even ? 'avatar--alt' : '' }}">
-                    {{ $contact['initials'] }}
+                    {{ $contact->initials }}
                 </div>
 
-                <p class="eyebrow">{{ $contact['role'] }}</p>
-                <h2>{{ $contact['name'] }}</h2>
+                <p class="eyebrow">{{ $contact->role }}</p>
+                <h2>{{ $contact->name }}</h2>
 
                 <dl>
-                    <dt>E-pasts</dt>
-                    <dd>
-                        <a href="mailto:{{ $contact['email'] }}">{{ $contact['email'] }}</a>
-                    </dd>
+                    {{-- email and phone only show if they are filled --}}
+                    @if ($contact->email)
+                        <dt>E-pasts</dt>
+                        <dd>
+                            <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
+                        </dd>
+                    @endif
 
-                    <dt>Telefons</dt>
-                    <dd>
-                        <a href="tel:{{ str_replace(' ', '', $contact['phone']) }}">{{ $contact['phone'] }}</a>
-                        <span class="muted">{{ $contact['note'] }}</span>
-                    </dd>
+                    @if ($contact->phone)
+                        <dt>Telefons</dt>
+                        <dd>
+                            <a href="{{ $contact->phoneLink() }}">{{ $contact->phone }}</a>
+                            <span class="muted">{{ $contact->phone_note }}</span>
+                        </dd>
+                    @endif
                 </dl>
             </section>
         @endforeach

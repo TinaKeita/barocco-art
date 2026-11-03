@@ -1,11 +1,11 @@
-
-
+/* contact cards next to each other */
 .contacts-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--gap);
 }
 
+/* circle with initials */
 .avatar {
     width: 56px;
     height: 56px;
@@ -52,7 +52,7 @@
     color: var(--text-muted);
 }
 
-/* ---------- Mobile ---------- */
+/* phone - cards go under each other */
 @media (max-width: 720px) {
     .contacts-grid {
         grid-template-columns: 1fr;
