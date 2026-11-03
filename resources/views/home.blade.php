@@ -2,6 +2,10 @@
 
 @section('title', 'Barocco Art')
 
+@push('styles')
+   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@endpush
+
 @section('content')
 
     {{-- Intro --}}

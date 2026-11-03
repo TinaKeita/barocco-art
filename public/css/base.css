@@ -1,3 +1,4 @@
+
 /* ---------- Design tokens ---------- */
 :root {
     --bg: #000000;
@@ -19,7 +20,7 @@
     --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* ---------- Base ---------- */
+/* ---------- Reset / base ---------- */
 *,
 *::before,
 *::after {
@@ -68,14 +69,13 @@ p {
     color: var(--bg);
 }
 
-/* Keyboard focus – visible, but only for keyboard users */
 :focus-visible {
     outline: 2px solid var(--text);
     outline-offset: 3px;
     border-radius: 4px;
 }
 
-/* Centered column used by nav, main and footer */
+/* ---------- Page column ---------- */
 .nav,
 main,
 .footer {
@@ -98,7 +98,6 @@ main {
     transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-/* Added by JS once the page is scrolled */
 .site-header.is-scrolled {
     background: rgba(0, 0, 0, 0.72);
     -webkit-backdrop-filter: blur(14px);
@@ -132,14 +131,11 @@ main {
     font-size: 15px;
 }
 
-/* Animated underline */
-.nav-links a,
-.link {
+.nav-links a {
     position: relative;
 }
 
-.nav-links a::after,
-.link::after {
+.nav-links a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -153,19 +149,22 @@ main {
 }
 
 .nav-links a:hover::after,
-.nav-links a.is-active::after,
-.link:hover::after {
+.nav-links a.is-active::after {
     transform: scaleX(1);
     transform-origin: left;
 }
 
-/* ---------- Shared bits ---------- */
+/* ---------- Shared components ---------- */
 .eyebrow {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.25em;
     color: var(--text-muted);
     margin-bottom: 8px;
+}
+
+.muted {
+    color: var(--text-muted);
 }
 
 .card {
@@ -189,6 +188,7 @@ main {
     color: var(--text-muted);
 }
 
+/* Buttons */
 .btn {
     display: inline-block;
     padding: 6px 14px;
@@ -211,7 +211,18 @@ main {
     transform: translateY(0);
 }
 
-/* "Lasīt vairāk" – always underlined, hover redraws the line */
+.btn--solid {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+}
+
+.btn--solid:hover {
+    background: transparent;
+    color: var(--text);
+}
+
+/* "Lasīt vairāk" style text link */
 .link {
     display: inline-block;
     margin-top: 14px;
@@ -226,7 +237,7 @@ main {
     background-size: 0 1px;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (page intro, used on every page) ---------- */
 .hero {
     text-align: center;
     padding-top: 36px;
@@ -245,7 +256,7 @@ main {
     color: var(--text-muted);
 }
 
-/* ---------- Gallery ---------- */
+/* ---------- Gallery (home + service pages) ---------- */
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -267,12 +278,10 @@ main {
     transition: transform 0.8s var(--ease), opacity 0.6s ease;
 }
 
-.gallery-item:hover img,
-.service-card:hover .image-frame img {
+.gallery-item:hover img {
     transform: scale(1.04);
 }
 
-/* Images fade in once loaded (class added by JS) */
 .js img.lazy-fade {
     opacity: 0;
 }
@@ -281,57 +290,7 @@ main {
     opacity: 1;
 }
 
-/* ---------- Services block (home) ---------- */
-.services-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gap);
-}
-
-.services-intro p:not(.eyebrow) {
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.service-item {
-    padding: 16px 15px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s var(--ease);
-}
-
-.service-item:hover {
-    background: var(--surface-hover);
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
-}
-
-.service-item h3 {
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.service-item p {
-    font-size: 11px;
-    line-height: 1.6;
-}
-
-/* ---------- Service cards (/pakalpojumi) ---------- */
-.service-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gap);
-    align-items: center;
-    padding: 18px;
-}
-
-/* ---------- Contact block ---------- */
+/* ---------- Contact block (home + contacts) ---------- */
 .contact-block {
     display: flex;
     align-items: center;
@@ -360,9 +319,7 @@ main {
     color: var(--text-faint);
 }
 
-/* ---------- Scroll reveal ----------
-   Only hidden when JS is running (html.js),
-   so the page still works if JS fails. */
+/* ---------- Scroll reveal (classes added by app.js) ---------- */
 .js .reveal {
     opacity: 0;
     transform: translateY(18px);
@@ -390,22 +347,13 @@ main {
         font-size: 14px;
     }
 
-    .gallery,
-    .services-block,
-    .service-card {
+    .gallery {
         grid-template-columns: 1fr;
     }
 
     .contact-block {
         flex-direction: column;
         align-items: flex-start;
-    }
-}
-
-@media (max-width: 420px) {
-    .gallery,
-    .services-grid {
-        grid-template-columns: 1fr;
     }
 }
 
