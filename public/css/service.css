@@ -1,0 +1,67 @@
+
+
+/* Text left, big image right */
+.service-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    align-items: start;
+    padding-top: 24px;
+}
+
+/* No image yet: text only, readable line length */
+.service-intro--no-image {
+    grid-template-columns: 1fr;
+}
+
+.service-intro--no-image .service-intro__text {
+    max-width: 620px;
+}
+
+.service-intro h1 {
+    font-size: clamp(28px, 4.5vw, 34px);
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.service-intro__text p:not(.eyebrow) {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.service-intro__text strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Image stays in view while reading long text */
+.service-intro__image {
+    position: sticky;
+    top: 90px;
+}
+
+/* Back / contact buttons */
+.service-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.service-actions .btn {
+    font-size: 12px;
+    padding: 8px 16px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+    .service-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .service-intro__image {
+        position: static;
+        order: -1; /* image above the text on phones */
+    }
+}

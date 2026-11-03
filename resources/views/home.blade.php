@@ -38,6 +38,7 @@
                 Izceļam dabisko gaismu, ilgtspējīgus materiālus un precīzas detaļas,
                 lai katrs projekts būtu funkcionāls un vizuāli pārliecinošs.
             </p>
+            <a href="{{ route('services') }}" class="link">Visi pakalpojumi</a>
         </div>
 
         <div class="services-grid">

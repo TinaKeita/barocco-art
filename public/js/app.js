@@ -1,4 +1,5 @@
 
+
 (function () {
     // ---- 1. Header gets a blurred background after scrolling ----
     const header = document.querySelector('.site-header');
@@ -15,7 +16,7 @@
     // Elements that fade/slide in when they enter the screen.
     // No need to add classes in Blade – they are picked here.
     const revealTargets = document.querySelectorAll(
-        '.hero, .gallery-item, .card, .service-item'
+        '.hero, .gallery-item, .card, .service-item, .service-intro, .service-actions'
     );
 
     revealTargets.forEach(function (el) {

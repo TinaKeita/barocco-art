@@ -1,0 +1,52 @@
+
+/* Whole card is a link */
+.service-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    align-items: center;
+    padding: 18px;
+    min-height: 320px;
+}
+
+.service-card__text {
+    padding: 0 0 0 0;
+}
+
+.service-card__text p:not(.eyebrow) {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Card without an image: text only, a bit more padding */
+.service-card--no-image {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 28px 24px;
+}
+
+.service-card--no-image .service-card__text {
+    max-width: 520px;
+}
+
+/* Hover: image zooms, underline redraws */
+.service-card:hover .image-frame img {
+    transform: scale(1.04);
+}
+
+.service-card:hover .link {
+    background-size: 0 1px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+    .service-card {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    /* image above the text on phones */
+    .service-card .image-frame {
+        order: -1;
+    }
+}
