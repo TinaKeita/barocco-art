@@ -6,13 +6,14 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    // `php artisan db:seed` (or `migrate:fresh --seed`) runs these in order.
+    // Sections first, because test images link to them.
     public function run(): void
     {
-        // runs all seeders with php artisan db:seed
         $this->call([
+            HomePageSeeder::class,
             SectionSeeder::class,
             ContactSeeder::class,
-            // images need sections so this one goes last
             TestImageSeeder::class,
         ]);
     }

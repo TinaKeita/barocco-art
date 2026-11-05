@@ -3,22 +3,18 @@
 @section('title', 'Barocco Art')
 
 @push('styles')
-   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @endpush
 
 @section('content')
 
-    {{-- intro text --}}
+    {{-- Intro --}}
     <section class="hero">
-        <h1>Barocco Art</h1>
-        <p>
-            Mūsdienīga arhitektūra, tīras līnijas un telpas, kas atdzīvojas gaismā.
-            Barocco Art kolekcijā apvienojam privātmājas, industriālos risinājumus
-            un radošus interjerus, lai radītu vietas, kas iedvesmo ikvienu apmeklētāju.
-        </p>
+        <h1>{{ $home->hero_title }}</h1>
+        <p>{{ $home->hero_text }}</p>
     </section>
 
-    {{-- gallery only shows if there are images --}}
+    {{-- Gallery: images ticked "Rādīt sākumlapas galerijā" in the admin --}}
     @if ($images->isNotEmpty())
         <div class="gallery">
             @foreach ($images as $image)
@@ -29,49 +25,41 @@
         </div>
     @endif
 
-    {{-- services, this text is written here not from database --}}
+    {{-- Services --}}
     <section class="card services-block">
         <div class="services-intro">
-            <p class="eyebrow">Pakalpojumi</p>
-            <h2>Telpas, kas strādā jūsu idejai</h2>
-            <p>
-                No koncepta skicēm līdz realizētām fasādēm un interjeriem.
-                Izceļam dabisko gaismu, ilgtspējīgus materiālus un precīzas detaļas,
-                lai katrs projekts būtu funkcionāls un vizuāli pārliecinošs.
-            </p>
+            <p class="eyebrow">{{ $home->services_eyebrow }}</p>
+            <h2>{{ $home->services_title }}</h2>
+            <p>{{ $home->services_text }}</p>
             <a href="{{ route('services') }}" class="link">Visi pakalpojumi</a>
         </div>
 
-        <div class="services-grid">
-            <div class="service-item">
-                <h3>Dzīvojamās mājas</h3>
-                <p>Individuāli risinājumi ar ērtām plānojuma līnijām un plašu stiklojumu.</p>
+        @if (! empty($home->services_items))
+            <div class="services-grid">
+                @foreach ($home->services_items as $item)
+                    <div class="service-item">
+                        <h3>{{ $item['title'] }}</h3>
+                        <p>{{ $item['text'] }}</p>
+                    </div>
+                @endforeach
             </div>
-            <div class="service-item">
-                <h3>Industriālie objekti</h3>
-                <p>Noliktavas, ražotnes un angāri ar optimizētu dienasgaismu un loģistiku.</p>
-            </div>
-            <div class="service-item">
-                <h3>Interjera dizains</h3>
-                <p>Minimālisma valoda, kas izceļ materiālu faktūru un gaismu.</p>
-            </div>
-            <div class="service-item">
-                <h3>Konsultācijas</h3>
-                <p>Projekta stratēģija, budžeta un materiālu izvēles sesijas.</p>
-            </div>
-        </div>
+        @endif
     </section>
 
-    {{-- contact buttons --}}
+    {{-- Contact --}}
     <section class="card contact-block">
         <div>
-            <p class="eyebrow">Kontakti</p>
-            <h2>Sazinies ar mums</h2>
-            <p>Pastāsti par savu projektu vai ieplāno klātienes tikšanos Barocco Art studijā.</p>
+            <p class="eyebrow">{{ $home->contact_eyebrow }}</p>
+            <h2>{{ $home->contact_title }}</h2>
+            <p>{{ $home->contact_text }}</p>
         </div>
         <div class="contact-buttons">
-            <a href="mailto:barocco@baroccoart.lv" class="btn">E-pasts</a>
-            <a href="tel:+37126262626" class="btn">Zvanīt</a>
+            @if ($home->contact_email)
+                <a href="mailto:{{ $home->contact_email }}" class="btn">E-pasts</a>
+            @endif
+            @if ($home->contact_phone)
+                <a href="{{ $home->phoneLink() }}" class="btn">Zvanīt</a>
+            @endif
         </div>
     </section>
 

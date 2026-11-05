@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
-    // fields that can be filled with create()
     protected $fillable = ['section_id', 'path', 'alt_text', 'show_on_home', 'sort_order'];
 
     protected function casts(): array
@@ -15,13 +15,27 @@ class Image extends Model
         return ['show_on_home' => 'boolean'];
     }
 
-    // every image belongs to one section
+    protected static function booted(): void
+    {
+        // Image row deleted in the admin -> delete the file too
+        static::deleted(function (Image $image) {
+            Storage::disk('public')->delete($image->path);
+        });
+
+        // Image replaced with a new upload -> delete the old file
+        static::updated(function (Image $image) {
+            if ($image->wasChanged('path') && $image->getOriginal('path')) {
+                Storage::disk('public')->delete($image->getOriginal('path'));
+            }
+        });
+    }
+
+    // The section this image belongs to
     public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);
     }
 
-    // full link to the image in storage folder
     public function url(): string
     {
         return asset('storage/' . $this->path);
