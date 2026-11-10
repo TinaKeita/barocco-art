@@ -18,8 +18,13 @@
     @if ($images->isNotEmpty())
         <div class="gallery">
             @foreach ($images as $image)
-                <div class="gallery-item">
-                    <img src="{{ $image->url() }}" alt="{{ $image->alt_text }}" loading="lazy">
+                {{-- on hover the image blurs and the caption shows on top --}}
+                <div class="gallery-item {{ $image->caption ? 'has-caption' : '' }}">
+                    <img src="{{ $image->url() }}" alt="{{ $image->altText() }}" loading="lazy">
+
+                    @if ($image->caption)
+                        <p class="gallery-caption">{{ $image->caption }}</p>
+                    @endif
                 </div>
             @endforeach
         </div>

@@ -29,18 +29,31 @@
 
         {{-- big image only if section has one --}}
         @if ($cover)
-            <div class="image-frame service-intro__image">
-                <img src="{{ $cover->url() }}" alt="{{ $cover->alt_text ?? $section->title }}">
-            </div>
+            <figure class="service-intro__image">
+                <div class="image-frame">
+                    <img src="{{ $cover->url() }}" alt="{{ $section->label }}">
+                </div>
+
+                @if ($cover->caption)
+                    <figcaption class="image-caption">{{ $cover->caption }}</figcaption>
+                @endif
+            </figure>
         @endif
     </section>
 
+    {{-- caption goes under each image if the admin wrote one --}}
     @if ($gallery->isNotEmpty())
         <div class="gallery">
             @foreach ($gallery as $image)
-                <div class="gallery-item">
-                    <img src="{{ $image->url() }}" alt="{{ $image->alt_text ?? $section->title }}" loading="lazy">
-                </div>
+                <figure class="gallery-figure">
+                    <div class="image-frame">
+                        <img src="{{ $image->url() }}" alt="{{ $section->label }}" loading="lazy">
+                    </div>
+
+                    @if ($image->caption)
+                        <figcaption class="image-caption">{{ $image->caption }}</figcaption>
+                    @endif
+                </figure>
             @endforeach
         </div>
     @endif

@@ -269,11 +269,32 @@ main {
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    transition: transform 0.8s var(--ease), opacity 0.6s ease;
+    transition: transform 0.8s var(--ease), opacity 0.6s ease, filter 0.5s ease;
 }
 
-.gallery-item:hover img {
+.gallery-item:hover img,
+.gallery-figure:hover img {
     transform: scale(1.04);
+}
+
+figure {
+    margin: 0;
+}
+
+/* caption under the image, a bit see-through */
+.image-caption {
+    margin-top: 10px;
+    padding: 0 4px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text);
+    opacity: 0.65;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-figure:hover .image-caption,
+.service-intro__image:hover .image-caption {
+    opacity: 0.9;
 }
 
 .js img.lazy-fade {

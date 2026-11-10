@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
-    protected $fillable = ['section_id', 'path', 'alt_text', 'show_on_home', 'sort_order'];
+    protected $fillable = ['section_id', 'path', 'caption', 'show_on_home', 'sort_order'];
 
     protected function casts(): array
     {
@@ -34,6 +34,12 @@ class Image extends Model
     public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);
+    }
+
+    // hidden alt text = name of the section, like "Celtniecība"
+    public function altText(): string
+    {
+        return $this->section?->label ?? 'Barocco Art';
     }
 
     public function url(): string

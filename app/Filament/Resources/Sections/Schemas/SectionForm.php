@@ -102,10 +102,10 @@ class SectionForm
                                     ->maxSize(5120)          // 5 MB
                                     ->required(),
 
-                                TextInput::make('alt_text')
+                                Textarea::make('caption')
                                     ->label('Apraksts')
-                                    ->helperText('Īss bildes apraksts (redzams meklētājiem un ekrāna lasītājiem).')
-                                    ->maxLength(150),
+                                    ->rows(2)
+                                    ->maxLength(200),
 
                                 Toggle::make('show_on_home')
                                     ->label('Rādīt sākumlapas galerijā'),
@@ -113,7 +113,7 @@ class SectionForm
                             ->grid(2)
                             ->defaultItems(0)
                             ->collapsible()
-                            ->itemLabel(fn (array $state): ?string => $state['alt_text'] ?? null)
+                            ->itemLabel(fn (array $state): ?string => $state['caption'] ?? null)
                             ->addActionLabel('Pievienot bildi'),
                     ]),
             ]);

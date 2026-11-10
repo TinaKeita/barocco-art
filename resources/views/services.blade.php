@@ -37,7 +37,7 @@
             {{-- some sections dont have an image yet --}}
             @if ($image)
                 <div class="image-frame">
-                    <img src="{{ $image->url() }}" alt="{{ $image->alt_text ?? $section->title }}" loading="lazy">
+                    <img src="{{ $image->url() }}" alt="{{ $section->label }}" loading="lazy">
                 </div>
             @endif
         </a>

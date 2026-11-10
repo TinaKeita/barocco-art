@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $home = HomePage::current();
 
-    $images = Image::where('show_on_home', true)
+    $images = Image::with('section')
+        ->where('show_on_home', true)
         ->orderBy('sort_order')
         ->get();
 

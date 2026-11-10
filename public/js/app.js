@@ -12,7 +12,7 @@
 
     // these elements fade in when they show up on screen
     const revealTargets = document.querySelectorAll(
-        '.hero, .gallery-item, .card, .service-item, .service-intro, .service-actions'
+        '.hero, .gallery-item, .gallery-figure, .card, .service-item, .service-intro, .service-actions'
     );
 
     revealTargets.forEach(function (el) {

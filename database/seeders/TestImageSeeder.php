@@ -40,7 +40,6 @@ class TestImageSeeder extends Seeder
             Image::create([
                 'section_id'   => Section::where('slug', $slug)->value('id'),
                 'path'         => $path,
-                'alt_text'     => 'Testa attēls',
                 'show_on_home' => true,
                 'sort_order'   => $i++,
             ]);
