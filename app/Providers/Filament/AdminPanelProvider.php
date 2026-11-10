@@ -30,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->profile()
+            ->profile(isSimple: false)   // profile opens inside the admin, with the side menu
 
           
             ->brandName('Barocco Art')
